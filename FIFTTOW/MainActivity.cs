@@ -1,97 +1,69 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Android;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
 using Android.Widget;
 using Android.OS;
-using Android.Util;
 using FIFTTOW.Servicies;
 using Android.Locations;
-using Android.Views;
-using FIFTTOW.Data;
-using Org.Json;
-using Debug = System.Diagnostics.Debug;
+using Autofac;
+using FIFTTOW.Interfaces;
 
 namespace FIFTTOW
 {
     [Activity(Label = "FIFTTOW", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        static readonly int REQUEST_LOCATION = 1;
+        public  IPermissionsService PermissionsService;
+        public  ILogService LogService;
+        public IStorageService<WifiLocation> WifiLocationStorageService;
+        public IWifiService WifiService;
 
-        static string[] PERMISSIONS_LOCATION =
+        public MainActivity()
         {
-            Manifest.Permission.AccessFineLocation,
-            Manifest.Permission.LocationHardware,
-            Manifest.Permission.AccessCoarseLocation,
-        };
+            App.Initialize(this);
+            LogService = App.Container.Resolve<ILogService>();
+            WifiService= App.Container.Resolve<IWifiService>();
+            PermissionsService = App.Container.Resolve<IPermissionsService>();
+            WifiLocationStorageService= App.Container.Resolve<IStorageService<WifiLocation>>();
 
-        protected override async void OnCreate(Bundle bundle)
+        }
+
+//        public MainActivity(WifiService wifiService, StorageService<WifiLocation> wifiLocationStorageService, ILogService logService, PermissionsService permissionsService)
+//        {
+//            _wifiService = wifiService;
+//            _wifiLocationStorageService = wifiLocationStorageService;
+//            _logService = logService;
+//            _permissionsService = permissionsService;
+//        }
+
+        protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+//            _permissionsService = new PermissionsService();
+//            _logService = new DebugLogService(this);
+//            _wifiLocationStorageService = new StorageService<WifiLocation>();
+//            _wifiService = new WifiService();
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
 
-
-            var storageService = new StorageService<WifiLocation>();
-            storageService.Add(new WifiLocation
-            {
-                Name = "Home"
-            });
-
-            foreach (var wifiLocation in storageService.GetAll())
-            {
-                Debug.WriteLine(wifiLocation.Name);
-            }
-
-            storageService.Add(new WifiLocation
-            {
-                Name = "School"
-            });
-
-            foreach (var wifiLocation in storageService.GetAll())
-            {
-                Debug.WriteLine(wifiLocation.Name);
-            }
-
-
-//            button.Click += MyMethod;
-//
-//            if (CheckSelfPermission(Manifest.Permission.AccessFineLocation) == Permission.Granted)
-//            {
-//                Console.WriteLine("asd");
-//            }
-//            else
-//            {
-//                Console.WriteLine("q654645");
-//                RequestPermissions(PERMISSIONS_LOCATION,REQUEST_LOCATION);
-//            }
+            var button = FindViewById<Button>(Resource.Id.MyButton);
+            button.Click += SaveWifiLocation;
         }
 
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-            if (requestCode == REQUEST_LOCATION)
-            {
-                Console.WriteLine("test");
-            }
+            PermissionsService.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
 
-        private void MyMethod(object sender, EventArgs e)
+        private void SaveWifiLocation(object sender, EventArgs e)
         {
-            var wifiService = new WifiService();
 
-            var isConnected = wifiService.IsConnectedToWifi(this);
-            Log.Debug("DEBUG", $"Is connected {isConnected}");
-            Toast.MakeText(this, $"Is connected {isConnected}", ToastLength.Long).Show();
+            var isConnected = WifiService.IsConnectedToWifi();
+            LogService.Debug($"Is connected {isConnected}");
 
             var criteria = new Criteria
             {
@@ -102,8 +74,7 @@ namespace FIFTTOW
             var provider = locationManager.GetBestProvider(criteria, false);
             using (var loc = locationManager.GetLastKnownLocation(provider))
             {
-                Log.Debug("DEBUG", $"Acc {loc.Accuracy}, lat {loc.Latitude}, lon {loc.Longitude}");
-                Console.WriteLine(loc);
+                LogService.Debug($"Acc {loc.Accuracy}, lat {loc.Latitude}, lon {loc.Longitude}");
             }
         }
     }

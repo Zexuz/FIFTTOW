@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using FIFTTOW.Interfaces;
 using Newtonsoft.Json;
 
 namespace FIFTTOW.Servicies
 {
-    public class StorageService<T> where T : class
+    public class StorageService<T> : IStorageService<T> where T : class
     {
         public void Add(T obj)
         {
