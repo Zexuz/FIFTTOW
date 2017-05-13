@@ -26,6 +26,8 @@ namespace FIFTTOW
 		
 		public static void UpdateIdValues()
 		{
+			global::FIFTTOW.Data.Resource.String.ApplicationName = global::FIFTTOW.Resource.String.ApplicationName;
+			global::FIFTTOW.Data.Resource.String.Hello = global::FIFTTOW.Resource.String.Hello;
 		}
 		
 		public partial class Attribute

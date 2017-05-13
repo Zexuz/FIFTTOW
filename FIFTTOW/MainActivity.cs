@@ -11,6 +11,8 @@ using Android.Util;
 using FIFTTOW.Servicies;
 using Android.Locations;
 using Android.Views;
+using FIFTTOW.Data;
+using Debug = System.Diagnostics.Debug;
 
 namespace FIFTTOW
 {
@@ -38,41 +40,34 @@ namespace FIFTTOW
             Button button = FindViewById<Button>(Resource.Id.MyButton);
 
 
+            var repository = new Repository<WifiLocation>();
 
-//            var dbFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-//            var fileName = "WifiLocations.db";
-//            var dbFullPath = Path.Combine(dbFolder, fileName);
-//            try
-//            {
-//                using (var db = new WifiLocationContext(dbFullPath))
-//                {
-//                    await db.Database.MigrateAsync(); //We need to ensure the latest Migration was added. This is different than EnsureDatabaseCreated.
-//
-//                    var location1= new WifiLocation() { Id = 1, Name = "Home"};
-//                    var location2= new WifiLocation() { Id = 2, Name = "Work"};
-//                    var location3= new WifiLocation() { Id = 3, Name = "Outside"};
-//
-//                    var catsInTheHat = new List<WifiLocation>() { location1,location2,location3};
-//
-//                    if(await db.WifiLocations.CountAsync() < 3)
-//                    {
-//                        await db.WifiLocations.AddRangeAsync(catsInTheHat);
-//                        await db.SaveChangesAsync();
-//                    }
-//
-//                    var wifiLocations = await db.WifiLocations.ToListAsync();
-//
-//                    foreach(var wifiLoc in wifiLocations)
-//                    {
-//                        Log.Debug("DEBUG", $"{wifiLoc.Id}, {wifiLoc.Name} ");
-//                    }
-//                }
-//
-//            }
-//            catch (Exception ex)
-//            {
-//                System.Diagnostics.Debug.WriteLine(ex.ToString());
-//            }
+            try
+            {
+                repository.CreateTableAsync();
+                Debug.WriteLine("Done createint databvase1");
+
+                repository.CreateTableAsync();
+                Debug.WriteLine("Done createint databvase2");
+
+                await repository.GetAsyncConnection().InsertAsync(new WifiLocation());
+
+                await repository.GetAsyncConnection().InsertAsync(new WifiLocation()
+                {
+                    Name = "School"
+                });
+
+                var homeLoc = await repository.GetAsyncConnection().FindAsync<WifiLocation>((a) => a.Name == "Home");
+
+
+                Debug.WriteLine($"HomeLoc {homeLoc.Id}, {homeLoc.Name}");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+
+            }
+
 
 //            button.Click += MyMethod;
 //
