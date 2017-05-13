@@ -5,10 +5,6 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIFTTOW", "FIFTTOW\FIFTTOW.csproj", "{08ACF657-15E9-45CA-817D-71474E5CCDBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIFTTOW.Test", "FIFTTOW.Test\FIFTTOW.Test.csproj", "{BE539264-4D4C-46C5-B04F-EEF2F4C97C60}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIFTTOW.Data", "FIFTTOW.Data\FIFTTOW.Data.csproj", "{D2CE5C62-7334-422D-BF45-C8F6121944E7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,14 +17,6 @@ Global
 		{08ACF657-15E9-45CA-817D-71474E5CCDBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08ACF657-15E9-45CA-817D-71474E5CCDBE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{08ACF657-15E9-45CA-817D-71474E5CCDBE}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{BE539264-4D4C-46C5-B04F-EEF2F4C97C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE539264-4D4C-46C5-B04F-EEF2F4C97C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE539264-4D4C-46C5-B04F-EEF2F4C97C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE539264-4D4C-46C5-B04F-EEF2F4C97C60}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2CE5C62-7334-422D-BF45-C8F6121944E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2CE5C62-7334-422D-BF45-C8F6121944E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2CE5C62-7334-422D-BF45-C8F6121944E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2CE5C62-7334-422D-BF45-C8F6121944E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

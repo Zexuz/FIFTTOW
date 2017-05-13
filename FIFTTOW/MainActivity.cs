@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
+using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.Content;
@@ -12,6 +11,7 @@ using FIFTTOW.Servicies;
 using Android.Locations;
 using Android.Views;
 using FIFTTOW.Data;
+using Org.Json;
 using Debug = System.Diagnostics.Debug;
 
 namespace FIFTTOW
@@ -19,10 +19,10 @@ namespace FIFTTOW
     [Activity(Label = "FIFTTOW", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-
         static readonly int REQUEST_LOCATION = 1;
 
-        static string[] PERMISSIONS_LOCATION = {
+        static string[] PERMISSIONS_LOCATION =
+        {
             Manifest.Permission.AccessFineLocation,
             Manifest.Permission.LocationHardware,
             Manifest.Permission.AccessCoarseLocation,
@@ -40,32 +40,25 @@ namespace FIFTTOW
             Button button = FindViewById<Button>(Resource.Id.MyButton);
 
 
-            var repository = new Repository<WifiLocation>();
-
-            try
+            var storageService = new StorageService<WifiLocation>();
+            storageService.Add(new WifiLocation
             {
-                repository.CreateTableAsync();
-                Debug.WriteLine("Done createint databvase1");
+                Name = "Home"
+            });
 
-                repository.CreateTableAsync();
-                Debug.WriteLine("Done createint databvase2");
-
-                await repository.GetAsyncConnection().InsertAsync(new WifiLocation());
-
-                await repository.GetAsyncConnection().InsertAsync(new WifiLocation()
-                {
-                    Name = "School"
-                });
-
-                var homeLoc = await repository.GetAsyncConnection().FindAsync<WifiLocation>((a) => a.Name == "Home");
-
-
-                Debug.WriteLine($"HomeLoc {homeLoc.Id}, {homeLoc.Name}");
+            foreach (var wifiLocation in storageService.GetAll())
+            {
+                Debug.WriteLine(wifiLocation.Name);
             }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.ToString());
 
+            storageService.Add(new WifiLocation
+            {
+                Name = "School"
+            });
+
+            foreach (var wifiLocation in storageService.GetAll())
+            {
+                Debug.WriteLine(wifiLocation.Name);
             }
 
 
@@ -85,7 +78,7 @@ namespace FIFTTOW
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-            if(requestCode == REQUEST_LOCATION)
+            if (requestCode == REQUEST_LOCATION)
             {
                 Console.WriteLine("test");
             }
@@ -112,9 +105,6 @@ namespace FIFTTOW
                 Log.Debug("DEBUG", $"Acc {loc.Accuracy}, lat {loc.Latitude}, lon {loc.Longitude}");
                 Console.WriteLine(loc);
             }
-
         }
-
     }
-
 }
