@@ -109,11 +109,11 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Exceptions\WifiNetworkNotFoundException.cs" />
+    <Compile Include="Extenstions\ToBundleExtension.cs" />
     <Compile Include="Interfaces\ILogService.cs" />
     <Compile Include="Interfaces\IPermissionsService.cs" />
     <Compile Include="Interfaces\IStorageService.cs" />
     <Compile Include="Interfaces\IWifiService.cs" />
-    <Compile Include="MainActivity.cs" />
     <Compile Include="Models\WifiInfo.cs" />
     <Compile Include="Models\WifiLocation.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -122,12 +122,18 @@
     <Compile Include="Servicies\PermissionsService.cs" />
     <Compile Include="Servicies\StorageService.cs" />
     <Compile Include="Servicies\WifiService.cs" />
+    <Compile Include="UI\Activities\MainActivity.cs" />
+    <Compile Include="UI\Activities\WifiLocationActivity.cs" />
+    <Compile Include="UI\WifiLocationAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\layout\WifiLocation.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">

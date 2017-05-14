@@ -1,6 +1,7 @@
 ﻿using Android.Content;
 using Autofac;
 using FIFTTOW.Interfaces;
+using FIFTTOW.Models;
 using FIFTTOW.Servicies;
 
 namespace FIFTTOW

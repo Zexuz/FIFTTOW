@@ -1,7 +1,7 @@
 
-using FIFTTOW.Models;
+using Android.OS;
 
-namespace FIFTTOW
+namespace FIFTTOW.Models
 {
     public class WifiLocation
     {
@@ -11,5 +11,11 @@ namespace FIFTTOW
         public float Accuracy{ get; set; }
         public double Lon { get; set; }
         public double Lat { get; set; }
+        public bool Enabled { get; set; }
+
+        public override string ToString()
+        {
+            return DisplayName;
+        }
     }
 }

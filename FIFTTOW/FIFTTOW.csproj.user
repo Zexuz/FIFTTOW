@@ -3,5 +3,6 @@
   <PropertyGroup>
     <SelectedDevice>OnePlus A3003</SelectedDevice>
     <DefaultDevice>Pixel_Edited_API_25</DefaultDevice>
+    <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>
