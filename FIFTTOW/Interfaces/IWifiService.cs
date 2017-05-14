@@ -1,4 +1,4 @@
-﻿using FIFTTOW.Servicies;
+﻿using FIFTTOW.Models;
 
 namespace FIFTTOW.Interfaces
 {

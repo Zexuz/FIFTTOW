@@ -19,7 +19,7 @@ namespace FIFTTOW.Servicies
 
         public void Debug(string message)
         {
-            System.Diagnostics.Debug.WriteLine($"DEBUG, {_context.Class}: {message}");
+            System.Diagnostics.Debug.WriteLine($"DEBUG, {_context.Class.SimpleName}: {message}");
         }
     }
 }

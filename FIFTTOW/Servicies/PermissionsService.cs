@@ -1,6 +1,5 @@
 ﻿using Android;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
 using FIFTTOW.Interfaces;
 

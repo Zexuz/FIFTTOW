@@ -3,6 +3,7 @@ using Android.Content;
 using FIFTTOW.Interfaces;
 using Android.Net.Wifi;
 using FIFTTOW.Exceptions;
+using WifiInfo = FIFTTOW.Models.WifiInfo;
 
 namespace FIFTTOW.Servicies
 {
@@ -69,11 +70,5 @@ namespace FIFTTOW.Servicies
         {
             return (WifiManager) _context.GetSystemService(Context.WifiService);
         }
-    }
-
-    public class WifiInfo
-    {
-        public string Name { get; set; }
-        public string MacAddress { get; set; }
     }
 }
