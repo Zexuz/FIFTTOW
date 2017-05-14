@@ -7,7 +7,7 @@ namespace FIFTTOW.Models
     {
 
         public string DisplayName { get; set; }
-        public WifiInfo Wifi { get; set; }
+        public string SSID { get; set; }
         public float Accuracy{ get; set; }
         public double Lon { get; set; }
         public double Lat { get; set; }

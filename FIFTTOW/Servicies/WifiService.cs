@@ -3,7 +3,6 @@ using Android.Content;
 using FIFTTOW.Interfaces;
 using Android.Net.Wifi;
 using FIFTTOW.Exceptions;
-using WifiInfo = FIFTTOW.Models.WifiInfo;
 
 namespace FIFTTOW.Servicies
 {
@@ -25,24 +24,20 @@ namespace FIFTTOW.Servicies
         }
 
 
-        public WifiInfo GetWifiInfo()
+        public string GetWifiISSID()
         {
             var wifiManager = GetWifiManager();
-            return new WifiInfo
-            {
-                Name = wifiManager.ConnectionInfo.SSID,
-                MacAddress = wifiManager.ConnectionInfo.MacAddress,
-            };
+            return wifiManager.ConnectionInfo.SSID;
         }
 
-        public void ConnectToWifi(WifiInfo wifiInfo)
+        public void ConnectToWifi(string SSID)
         {
             ActivateWifi();
             var wifiManager = GetWifiManager();
-            var conf = wifiManager.ConfiguredNetworks.SingleOrDefault(wifi => wifi.Ssid == wifiInfo.Name);
+            var conf = wifiManager.ConfiguredNetworks.SingleOrDefault(wifi => wifi.Ssid == SSID);
             if(conf == null)
             {
-                throw new WifiNetworkNotFoundException($"The Wifi network with name '{wifiInfo.Name}' can't be found in stored Wifi connections");
+                throw new WifiNetworkNotFoundException($"The Wifi network with name '{SSID}' can't be found in stored Wifi connections");
             }
             wifiManager.EnableNetwork(conf.NetworkId, true);
         }

@@ -21,7 +21,7 @@ namespace FIFTTOW
             builder.Register(ctx => new WifiService(context)).As<IWifiService>();
 
             builder.RegisterType<PermissionsService>().As<IPermissionsService>();
-            builder.RegisterType<StorageService<WifiLocation>>().As<IStorageService<WifiLocation>>();
+            builder.RegisterType<WifiLocationStorageService>().As<IStorageService<WifiLocation>>();
 
             Container = builder.Build();
         }

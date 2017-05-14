@@ -5,8 +5,8 @@ namespace FIFTTOW.Interfaces
     public interface IWifiService
     {
         bool IsConnectedToWifi();
-        WifiInfo GetWifiInfo();
-        void ConnectToWifi(WifiInfo wifiInfo);
+        string GetWifiISSID();
+        void ConnectToWifi(string SSID);
         void DisableWifi();
         void ActivateWifi();
         bool HasWifiEnabled();

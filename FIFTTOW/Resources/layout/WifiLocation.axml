@@ -5,117 +5,117 @@
     android:minHeight="25px"
     android:minWidth="25px"
     android:orientation="vertical">
-
     <RelativeLayout
         android:id="@+id/SwitchRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="25px"
         android:minWidth="25px">
-
         <Switch
             android:id="@+id/Enable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Enabledhjshjdfsdf" />
     </RelativeLayout>
-
     <LinearLayout
-        android:id="@+id/SSID"
+        android:id="@+id/DisplayNameRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
+        <TextView
+            android:id="@+id/DisplayNameLable"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Display name: " />
+        <EditText
+            android:id="@+id/DisplayNameValue"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="DisplayName Value" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/SSIDRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/SSIDLable"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="SSID" />
-
-        <EditText
+            android:text="SSID: " />
+        <TextView
             android:id="@+id/SSIDValue"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="SSID Value" />
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/MACRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <TextView
             android:id="@+id/MACLable"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="MAC" />
-
-        <EditText
+            android:text="MAC: " />
+        <TextView
             android:id="@+id/MACValue"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Mac Value" />
-
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/AccuracyRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <TextView
             android:id="@+id/AccuracyLable"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Accuracy" />
-
-        <EditText
+            android:text="Accuracy: " />
+        <TextView
             android:id="@+id/AccuracyValue"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Accuracy Value" />
-
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/LonRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <TextView
             android:id="@+id/LonLable"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Lon" />
-
-        <EditText
+            android:text="Lon: " />
+        <TextView
             android:id="@+id/LonValue"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Lon Value" />
-
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/LatRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <TextView
             android:id="@+id/LatLable"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Lat" />
-
-        <EditText
+            android:text="Lat: " />
+        <TextView
             android:id="@+id/LatValue"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Lat Value" />
-
     </LinearLayout>
+    <Button
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SaveButton" />
 </LinearLayout>

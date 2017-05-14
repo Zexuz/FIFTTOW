@@ -108,19 +108,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Exceptions\ItemAlredySavedException.cs" />
     <Compile Include="Exceptions\WifiNetworkNotFoundException.cs" />
     <Compile Include="Extenstions\ToBundleExtension.cs" />
     <Compile Include="Interfaces\ILogService.cs" />
     <Compile Include="Interfaces\IPermissionsService.cs" />
     <Compile Include="Interfaces\IStorageService.cs" />
     <Compile Include="Interfaces\IWifiService.cs" />
-    <Compile Include="Models\WifiInfo.cs" />
     <Compile Include="Models\WifiLocation.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicies\DebugLogService.cs" />
     <Compile Include="Servicies\PermissionsService.cs" />
-    <Compile Include="Servicies\StorageService.cs" />
+    <Compile Include="Servicies\WifiLocationStorageService.cs" />
     <Compile Include="Servicies\WifiService.cs" />
     <Compile Include="UI\Activities\MainActivity.cs" />
     <Compile Include="UI\Activities\WifiLocationActivity.cs" />

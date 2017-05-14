@@ -13,8 +13,7 @@ namespace FIFTTOW.Extenstions
             bundle.PutDouble(nameof(model.Lat), model.Lat);
             bundle.PutDouble(nameof(model.Lon), model.Lon);
             bundle.PutString(nameof(model.DisplayName), model.DisplayName);
-            bundle.PutString(nameof(model.Wifi.MacAddress), model.Wifi.MacAddress);
-            bundle.PutString(nameof(model.Wifi.Name), model.Wifi.Name);
+            bundle.PutString(nameof(model.SSID), model.SSID);
             return bundle;
         }
 
@@ -27,9 +26,7 @@ namespace FIFTTOW.Extenstions
             wifiLocation.Enabled= model.GetBoolean(nameof(wifiLocation.Enabled));
             wifiLocation.Lat= model.GetDouble(nameof(wifiLocation.Lat));
             wifiLocation.Lon= model.GetDouble(nameof(wifiLocation.Lon));
-            wifiLocation.Wifi = new WifiInfo();
-            wifiLocation.Wifi.MacAddress= model.GetString(nameof(wifiLocation.Wifi.MacAddress));
-            wifiLocation.Wifi.Name= model.GetString(nameof(wifiLocation.Wifi.Name));
+            wifiLocation.SSID= model.GetString(nameof(wifiLocation.SSID));
 
             return wifiLocation;
         }

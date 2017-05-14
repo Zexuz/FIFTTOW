@@ -60,56 +60,68 @@ namespace FIFTTOW
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f05000a
-			public const int AccuracyLable = 2131034122;
+			// aapt resource value: 0x7f05000d
+			public const int AccuracyLable = 2131034125;
 			
-			// aapt resource value: 0x7f050009
-			public const int AccuracyRow = 2131034121;
+			// aapt resource value: 0x7f05000c
+			public const int AccuracyRow = 2131034124;
 			
-			// aapt resource value: 0x7f05000b
-			public const int AccuracyValue = 2131034123;
+			// aapt resource value: 0x7f05000e
+			public const int AccuracyValue = 2131034126;
+			
+			// aapt resource value: 0x7f050004
+			public const int DisplayNameLable = 2131034116;
+			
+			// aapt resource value: 0x7f050003
+			public const int DisplayNameRow = 2131034115;
+			
+			// aapt resource value: 0x7f050005
+			public const int DisplayNameValue = 2131034117;
 			
 			// aapt resource value: 0x7f050002
 			public const int Enable = 2131034114;
 			
+			// aapt resource value: 0x7f050013
+			public const int LatLable = 2131034131;
+			
+			// aapt resource value: 0x7f050012
+			public const int LatRow = 2131034130;
+			
+			// aapt resource value: 0x7f050014
+			public const int LatValue = 2131034132;
+			
 			// aapt resource value: 0x7f050010
-			public const int LatLable = 2131034128;
+			public const int LonLable = 2131034128;
 			
 			// aapt resource value: 0x7f05000f
-			public const int LatRow = 2131034127;
+			public const int LonRow = 2131034127;
 			
 			// aapt resource value: 0x7f050011
-			public const int LatValue = 2131034129;
+			public const int LonValue = 2131034129;
 			
-			// aapt resource value: 0x7f05000d
-			public const int LonLable = 2131034125;
+			// aapt resource value: 0x7f05000a
+			public const int MACLable = 2131034122;
 			
-			// aapt resource value: 0x7f05000c
-			public const int LonRow = 2131034124;
+			// aapt resource value: 0x7f050009
+			public const int MACRow = 2131034121;
 			
-			// aapt resource value: 0x7f05000e
-			public const int LonValue = 2131034126;
-			
-			// aapt resource value: 0x7f050007
-			public const int MACLable = 2131034119;
-			
-			// aapt resource value: 0x7f050006
-			public const int MACRow = 2131034118;
-			
-			// aapt resource value: 0x7f050008
-			public const int MACValue = 2131034120;
+			// aapt resource value: 0x7f05000b
+			public const int MACValue = 2131034123;
 			
 			// aapt resource value: 0x7f050000
 			public const int MyButton = 2131034112;
 			
-			// aapt resource value: 0x7f050003
-			public const int SSID = 2131034115;
+			// aapt resource value: 0x7f050007
+			public const int SSIDLable = 2131034119;
 			
-			// aapt resource value: 0x7f050004
-			public const int SSIDLable = 2131034116;
+			// aapt resource value: 0x7f050006
+			public const int SSIDRow = 2131034118;
 			
-			// aapt resource value: 0x7f050005
-			public const int SSIDValue = 2131034117;
+			// aapt resource value: 0x7f050008
+			public const int SSIDValue = 2131034120;
+			
+			// aapt resource value: 0x7f050015
+			public const int SaveButton = 2131034133;
 			
 			// aapt resource value: 0x7f050001
 			public const int SwitchRow = 2131034113;

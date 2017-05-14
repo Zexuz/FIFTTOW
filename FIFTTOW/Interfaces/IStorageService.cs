@@ -6,5 +6,6 @@ namespace FIFTTOW.Interfaces
     {
         void Add(T obj);
         List<T> GetAll();
+        void Save(IEnumerable<T> items);
     }
 }

@@ -8,6 +8,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Autofac;
+using FIFTTOW.Exceptions;
 using FIFTTOW.Extenstions;
 using FIFTTOW.Interfaces;
 using FIFTTOW.Models;
@@ -19,7 +20,6 @@ namespace FIFTTOW.UI.Activities
     {
         //DI
         private readonly IPermissionsService _permissionsService;
-
         private readonly ILogService _logService;
         private readonly IStorageService<WifiLocation> _wifiLocationStorageService;
         private readonly IWifiService _wifiService;
@@ -28,7 +28,7 @@ namespace FIFTTOW.UI.Activities
         private Button _addLocationButton;
 
         //Misc
-        private readonly List<WifiLocation> _locations;
+        private List<WifiLocation> _locations;
 
         public MainActivity()
         {
@@ -41,6 +41,12 @@ namespace FIFTTOW.UI.Activities
 
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+            _locations = _wifiLocationStorageService.GetAll();
+            ListAdapter = new WifiLocationAdapter(this, _locations);
+        }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -89,15 +95,23 @@ namespace FIFTTOW.UI.Activities
             {
                 var wifiLoc = new WifiLocation()
                 {
-                    Wifi = _wifiService.GetWifiInfo(),
+                    SSID = _wifiService.GetWifiISSID(),
                     Accuracy = loc.Accuracy,
-                    DisplayName = _wifiService.GetWifiInfo().Name + _locations.Count,
+                    DisplayName = _wifiService.GetWifiISSID(),
                     Lat = loc.Latitude,
                     Lon = loc.Longitude,
                     Enabled =  true
                 };
-                _wifiLocationStorageService.Add(wifiLoc);
                 _locations.Add(wifiLoc);
+                try
+                {
+                    _wifiLocationStorageService.Add(wifiLoc);
+                }
+                catch (ItemAlredySavedException exception)
+                {
+                    Toast.MakeText(this, exception.Message, ToastLength.Long).Show();
+                    return;
+                }
             }
 
             UpdateUi();
