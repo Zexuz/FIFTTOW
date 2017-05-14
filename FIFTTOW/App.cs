@@ -15,13 +15,16 @@ namespace FIFTTOW
             var builder = new ContainerBuilder();
 
             builder.RegisterType<DebugLogService>().As<ILogService>();
-            builder.Register(ctx => new DebugLogService(context)).As<ILogService>();
 
             builder.RegisterType<WifiService>().As<IWifiService>();
-            builder.Register(ctx => new WifiService(context)).As<IWifiService>();
 
             builder.RegisterType<PermissionsService>().As<IPermissionsService>();
+
             builder.RegisterType<WifiLocationStorageService>().As<IStorageService<WifiLocation>>();
+
+            builder.RegisterType<LocationService>().As<ILocationService>();
+
+            builder.Register(ctx => context).As(typeof(Context));
 
             Container = builder.Build();
         }

@@ -20,9 +20,11 @@ namespace FIFTTOW.UI.Activities
     {
         //DI
         private readonly IPermissionsService _permissionsService;
+
         private readonly ILogService _logService;
         private readonly IStorageService<WifiLocation> _wifiLocationStorageService;
         private readonly IWifiService _wifiService;
+        private readonly ILocationService _locationService;
 
         //UI
         private Button _addLocationButton;
@@ -37,8 +39,9 @@ namespace FIFTTOW.UI.Activities
             _wifiService = App.Container.Resolve<IWifiService>();
             _permissionsService = App.Container.Resolve<IPermissionsService>();
             _wifiLocationStorageService = App.Container.Resolve<IStorageService<WifiLocation>>();
-            _locations = _wifiLocationStorageService.GetAll();
+            _locationService = App.Container.Resolve<ILocationService>();
 
+            _locations = _wifiLocationStorageService.GetAll();
         }
 
         protected override void OnResume()
@@ -69,7 +72,7 @@ namespace FIFTTOW.UI.Activities
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)
         {
-            var wifiLocation = ((WifiLocationAdapter)ListAdapter)[position];
+            var wifiLocation = ((WifiLocationAdapter) ListAdapter)[position];
 //            Toast.MakeText(this, wifiLocation.DisplayName, ToastLength.Short).Show();
 
             var intent = new Intent(this, typeof(WifiLocationActivity));
@@ -81,48 +84,36 @@ namespace FIFTTOW.UI.Activities
         private void SaveWifiLocation(object sender, EventArgs e)
         {
 
-            var isConnected = _wifiService.IsConnectedToWifi();
-            _logService.Debug($"Is connected {isConnected}");
-
-            var criteria = new Criteria
-            {
-                Accuracy = Accuracy.NoRequirement
-            };
-
-            var locationManager = (LocationManager) GetSystemService(LocationService);
-            var provider = locationManager.GetBestProvider(criteria, false);
-            using (var loc = locationManager.GetLastKnownLocation(provider))
-            {
-                var wifiLoc = new WifiLocation()
-                {
-                    SSID = _wifiService.GetWifiISSID(),
-                    Accuracy = loc.Accuracy,
-                    DisplayName = _wifiService.GetWifiISSID(),
-                    Lat = loc.Latitude,
-                    Lon = loc.Longitude,
-                    Enabled =  true
-                };
-                _locations.Add(wifiLoc);
-                try
-                {
-                    _wifiLocationStorageService.Add(wifiLoc);
-                }
-                catch (ItemAlredySavedException exception)
-                {
-                    Toast.MakeText(this, exception.Message, ToastLength.Long).Show();
-                    return;
-                }
-            }
-
-            UpdateUi();
+            _locationService.GetLocationHighAccuracy();
+//            using (var loc = _locationService.GetLastKnowLocation())
+//            {
+//                var wifiLoc = new WifiLocation()
+//                {
+//                    SSID = _wifiService.GetWifiISSID(),
+//                    Accuracy = loc.Accuracy,
+//                    DisplayName = _wifiService.GetWifiISSID(),
+//                    Lat = loc.Latitude,
+//                    Lon = loc.Longitude,
+//                    Enabled = true
+//                };
+//                _locations.Add(wifiLoc);
+//                try
+//                {
+//                    _wifiLocationStorageService.Add(wifiLoc);
+//                }
+//                catch (ItemAlredySavedException exception)
+//                {
+//                    Toast.MakeText(this, exception.Message, ToastLength.Long).Show();
+//                    return;
+//                }
+//            }
+//
+//            UpdateUi();
         }
 
         private void UpdateUi()
         {
-            RunOnUiThread(() =>
-            {
-                ((WifiLocationAdapter) ListAdapter).NotifyDataSetChanged();
-            });
+            RunOnUiThread(() => { ((WifiLocationAdapter) ListAdapter).NotifyDataSetChanged(); });
         }
     }
 }
